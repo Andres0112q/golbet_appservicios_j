@@ -2,25 +2,16 @@
 
 using GolBet.Entities.Enums;
 
-
-
 namespace GolBet.Services.DTOs;
-
-
 
 /// <summary> 
 
 /// Read model for the match board. Flat: no navigation properties. 
 
-/// </summary> 
-
+/// </summary>
 public class MatchDto
-
 {
-
     public int Id { get; set; }
-
-
 
     public DateTime Date { get; set; }              // UTC; the view converts 
 
