@@ -24,7 +24,7 @@ public class MatchRepository : GenericRepository<Match>, IMatchRepository
 
 
 
-    public async Task<IEnumerable<Match>> GetAllWithTeamsAsync(MatchStatus? status = null)
+    public async Task<IEnumerable<Match>> GetAllWithTeamsAsync(MatchStatus? status = null, string? search = null)
 
     {
 
@@ -45,7 +45,8 @@ public class MatchRepository : GenericRepository<Match>, IMatchRepository
         if (status.HasValue)
 
             query = query.Where(m => m.Status == status.Value);
-
+        if (!string.IsNullOrEmpty(search))
+            query = query.Where(m => m.HomeTeam.Name.Contains(search) || m.AwayTeam.Name.Contains(search));
 
 
         return await query.OrderBy(m => m.Date).ToListAsync();
@@ -67,5 +68,7 @@ public class MatchRepository : GenericRepository<Match>, IMatchRepository
             .AsNoTracking()
 
             .FirstOrDefaultAsync(m => m.Id == id);
+
+
 
 }
