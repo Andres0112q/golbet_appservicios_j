@@ -62,6 +62,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 // Business services 
 
 builder.Services.AddScoped<IMatchService, MatchService>();
+builder.Services.AddScoped<IBetService, BetService>();
 var app = builder.Build();
 
 // Seed the database on startup 
